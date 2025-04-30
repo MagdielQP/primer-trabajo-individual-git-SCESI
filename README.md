@@ -118,7 +118,17 @@ para hacer commit podemos usar los comandos:
     - $ git log --oneline --reverse
  - Tambien tenemos la opcion de ver el historial en forma de grafo con el comando:
     - $ git log --online --graph
-
+ - Si los commit son muchos, podemos usar un comando:
+    - $ git log --online -5 //ejm -5 muestra los ultimos 5 commit.
+ - Si queremos ver en el historial despues o antes de una fecha usamos:
+    - $ git log --online --after="2025-03-1"
+    - $ git log --online --after="one month ago"
+    - $ git log --online --before="last week"
+    - $ git log --online --after="last week" --before="yesterday" //commits entre ayer y hace un mes atras
+ - Buscar codigo modififcado dentro de un commit:
+    - $ git log --online -S"codigo_a_buscar"
+    - $ git log --online -S"codigo_a_buscar" --patch //mostrara lineas que se agregaron y quitaron con el pedazo de codigo
+    - $ git log --online -S"codigo_a_buscar" --stat //musetra solo los archivos que cambiaron
 ## Algunas cositas extras
  - git no detecta automaticamente cuando se cambia un nombre o se mueve un archivo a otra carpeta, asi que podemos usar el siguiente comando:
     - $ git mv archivo.py nombre-carpeta
@@ -149,3 +159,7 @@ para hacer commit podemos usar los comandos:
  - usamos el comando:
     - $ git restore --source=id_commit archivo_a_recuperar     o tambien podemos usar:
     - $ git restore --source=HEAD~1 archivo_a_recuperar     //HEAD~1 vuelve a un commit atras
+## crear shortcuts o alias
+ - para ello usamos los comandos:
+    - $ git config --global alias.nombre_alias "comando que quieres acortar"
+    ejm: $ git config --global alias.glg "log --oneline --graph"
