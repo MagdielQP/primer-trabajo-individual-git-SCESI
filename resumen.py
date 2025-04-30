@@ -1,0 +1,2 @@
+print("clase Lunes 28 de abril de 2025")
+print("vimos la instalacion de git y la configuracion necesaria al momento de instalar, tambien hicimos la configuracion para que podamos usarla en nuestro editor de codigo prererido")
