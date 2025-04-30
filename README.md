@@ -66,20 +66,26 @@ Pero si este si tuviera un repositorio inicializado nos mostraría:
     - $ git add -A
     - $ git add --all 
 Este comando coloca en el Stage todos los archivos que han sido modificados.
-## Deshacer un archivo modificado
+
+## Deshacer un archivo modificado (que este en el stage)
 - Cuando un archivo fue pasado al estado de Stage todavia podemos volver este a su estado anterior antes de estar agregado a esta area, para ello usamos los comandos:
     - $ git reset nombre-archivo
+Tambien podemos usar el comando:
+    - $ git restore --staged nombre_archivo
+
 ## Deshacer un archivo ya modificado
  - Para restaurarlo a la version previa usamos el comando:
     - $ git restore nombre-archivo
  - o para seleccionar varios archivos podemos usar:
     - git restore .
     - git restore '*.py'
+
 # Que es un commit
 un commit resgistra los cambios dentro del repositorio local, estos guardan el id, la fecha y hora, autor, y la referencia a la instantanea
 En español significa "comprometer".
 un commit toma todo lo que esta en el area de staging y lo guarda en el repositorio local.
 cuando se hace commit OJO: no se elimina la parte del staging
+
 ## Haciendo un commit
 Para hacer commit verificamos que todo lo que queremos commitear este en el area de staging.
 Si tenemos dudas al realizas commit podemos usar:
@@ -96,15 +102,50 @@ para hacer commit podemos usar los comandos:
     - $ git commit -a -m "titulo de commit"
     o de manera mas simplificada:
     - $ git commit -am "titulo de commit"
+
 ## Buenas practicas en los commits
  - Cuando hacemos commits debemos verificar que al hacerlos no deberian ser cambios muy grandes que contengan una gran cantidad de modificaciones, ni tampoco que sean muy pequeños como una linea de codigo, para hacer un commit ponte a pensar...
     - "En un futuro si algo sale mal podria volver a este punto"
  - Los mensajes o titulos de los commits deben de hacer sentido, osea, deben ser bien descriptivos.
+
  ## Ver el historial de commits
   - Para ver el historial de commits con sus respectivos detalles usamos los comandos:
     - $ git log
     Esto mostrara en detalle el id,autor, fecha y hora
     - $ git log --oneline
     como lo dice el nombre, este comando nos simplifica dandonos solo el titulo y el id.
+ - para ver el historial pero de forma que sea desde el mas antiguo al mas nuevo usamos el comando:
+    - $ git log --oneline --reverse
+ - Tambien tenemos la opcion de ver el historial en forma de grafo con el comando:
+    - $ git log --online --graph
+
 ## Algunas cositas extras
-... en proceso ...
+ - git no detecta automaticamente cuando se cambia un nombre o se mueve un archivo a otra carpeta, asi que podemos usar el siguiente comando:
+    - $ git mv archivo.py nombre-carpeta
+ - para ver una version mas resumida o simplificada de status podemos usar el comando:
+    - $ git status -s
+- A veces entrar al historial te pide presionar "q" para salir del historial.
+- con el siguiente comando podemos ver detalles sobre el commit:
+    - $ git show id-commit
+- con el siguiente comadno podemos ver el contenido de un commit o de un archivo que esta en el commit:
+    - $ git show id-commit:nombre_archivo
+ - con el siguiente comando podemos ver los eleementos modificados(en area de staging) en nuestro proyecto despues de un commit, pero esta no es la mejor forma(es mejor una herramienta grafica en el editor de codigo):
+    - $ git diff --cached
+ - Si queremos ver los cambios hechos en el area de ,modified entonces solo colocamos el comando:
+    - $ git diff
+ - Para limpiar nuestra area de trabajo y descartar cambios podemos usar:
+    - $ git clean -f OJO: usar esto es peligroso, tratar de no usarlo 
+
+## Head y main
+ - main: este llegaria a ser el nombre principal de la rama principal, o seria donde nos ubicamos nosotros(cambia dependiendo de la rama donde nos encontremos)
+ - head: indica donde nos encontramos nosotros en el codigo, y este siempre va a apuntar a una rama en especifico.
+
+# Ignorando archivos y directorios
+ - crear un archivo ".gitignore"
+ en este archivo agregamos todos los arvchivos que queremos ignorar
+ - Una vez un archivo agregado y ya tiene seguimiento de git es muy dificil ignorarlo, es decir, si un archivoi ya a tenido seguimiento, y despues lo agregamos a un .gitignore, y editamos ese archivo, este va a salir que esta modificado, cuando al estar en el gitignofe no deberia ser asi, arreglamos esto haciendo:
+    - $ git rm --cached archivo_a_ignorar 
+ ## Restaurar un archivo a una version anterior
+ - usamos el comando:
+    - $ git restore --source=id_commit archivo_a_recuperar     o tambien podemos usar:
+    - $ git restore --source=HEAD~1 archivo_a_recuperar     //HEAD~1 vuelve a un commit atras
