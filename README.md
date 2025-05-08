@@ -155,7 +155,7 @@ para hacer commit podemos usar los comandos:
  en este archivo agregamos todos los arvchivos que queremos ignorar
  - Una vez un archivo agregado y ya tiene seguimiento de git es muy dificil ignorarlo, es decir, si un archivoi ya a tenido seguimiento, y despues lo agregamos a un .gitignore, y editamos ese archivo, este va a salir que esta modificado, cuando al estar en el gitignofe no deberia ser asi, arreglamos esto haciendo:
     - $ git rm --cached archivo_a_ignorar 
- ## Restaurar un archivo a una version anterior
+## Restaurar un archivo a una version anterior
  - usamos el comando:
     - $ git restore --source=id_commit archivo_a_recuperar     o tambien podemos usar:
     - $ git restore --source=HEAD~1 archivo_a_recuperar     //HEAD~1 vuelve a un commit atras
