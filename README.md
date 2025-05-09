@@ -347,3 +347,45 @@ Al realizar el borrado en el remoto, esta no se eliminara en nuestro local, por 
    - $ git branch -d nombre_rama
  - El siguiente comando se utiliza para limpiar las referencias a ramas remotas que ya no existen en el repositorio remoto:
    - $ git remote prune origin
+
+# Flujo de Trabajo - Git flow
+Es la manera en la que el equipo de desarrollo va a utilizar git para poder trabajar de manera colaborativa
+pueden ser:   
+   - Git Flow: usa ramas como main,develop, Fetaure, Release, Hotfix
+   - GitHub Flow: Favorece los despliegues continuos, se hace la aceptacion por medio de pull request
+   - Trunk Based Development: Util so contamos con un buen CI/CD, se van integrando ramas por medio de una pull request
+   - Ship/Show/Ask: fusion sin supervision, peticion de cambios, abre una PR para discutir cambios antes de fusionarlos
+
+# Buenas Practicas
+¿Cada cuanto hcaer un commit?
+ - A menudo, no colocar cambios taan grandes ni tan pequeños(sin sentido)
+¿Como escribir buenos commits?
+ - usa Maximo 50 caracteres, que sea descriptivo
+ - Usar un verbo imperativo como : Add, Change, Fix, Remove
+ - No exagerar con los signs de puntuacion
+ - Añadir mas informacion en el cuerpo del commit si es necesario
+Escribir un buen nombre de rama: Debe ser descriptivo a lo q se realiza en la rama o usa los IDs de Jira o el sistema de tickets que se use
+
+# Como deshacer cambios
+## ¿En que casos se eliminan cambios?
+ - Cuando dejo de funcionar el proyecto
+ - Se quiere recuperar una parte del codigo que eliminamos
+ - Se quiere recuperar un archivo eliminado
+
+## Comandos destructivos y no destructivos
+Los destructivos afectan el historial de commits mietras los otros no
+### git reset
+ - soft: Mantiene los cambios que ocurrieron antes de hacer commit desde donde apuntaba
+   - $ git reset --soft id_commit
+ - hard: Descarta los cambios
+   - $ git reset --hard id_commit
+
+### git revert - No destructivo
+Se utiliza para deshacer los cambios realizados por un commit específico, creando un nuevo commit que anula los cambios del commit original sin eliminarlo del historial de commits
+nos devuleve al commit anterior al que colocamos el id_commit
+   - $ git revert id_commit
+### git checkout
+Nos permite recuperar codigo especifico de commits
+   - $ git checkout id_commit
+  > [!IMPORTANT]
+ > git rebase es un comando restructivo
