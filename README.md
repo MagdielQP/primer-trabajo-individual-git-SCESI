@@ -19,7 +19,7 @@
  - Si por algun motivo quisieras editarlo desde tu editor de codigo entonces lo haremos con el comando:
     - $ git config --global -e
  - lo que hace este comando es q nos abre una pestaña en el editor que usamos y nos muuestra la informacion de [user, init, core, filter"lfs"]
- ![imagen de muestra]("Imagen de WhatsApp 2025-04-30 a las 08.01.24_edf6970f.jpg")
+ ![imagen de muestra]("imagen1.jpg")
  - tambien podemos confirmar la configuracion con los comandos:
     - $ git config --list
     - $ git config --global --list
@@ -297,3 +297,53 @@ se usa el comando:
    - $ git rebase --continue (continuar despues de resolver conflictos)
    - $ git rebase --skip (se utiliza para continuar una operación de rebase omitiendo el commit que causó un conflicto)
    - $ git rebase --abort (abortar el rebase)
+
+# Repositorios remotos
+Primero deberiamos tener una cuenta en github, luego crear un nuevo repositorio(darle nombre y estado: publico o privado)
+ - Para añadir nuestro archivo remoto desde la terminal hacemos:
+   - $ git remote add origin url_git_repository
+ - Si solo queremos clonar un repositorio:
+   - $ git clone url_git_repository
+ - Para subir nuestros avances desde el local hasta el remoto usamos el comando:
+   -$ git push origin main (esto debemos hacerlo para las ramas de la misma manera pero cambiando en vez de main al otro nombre)
+## Crear una nueva rama remota
+ - creamos nuestra rama y nos cambiamos a ella:
+   - $ git switch -c new_branch
+ - Subimos la rama al remoto:
+   - $ git push origin new_branch
+Ya tenemos nuestra rama en el repositorio remoto. Ahora, podemos empezar a crear commits en nuestro repositorio local y enviarlos al repositorio remoto a la rama que hemos creado
+
+## Interactuando con la rama remota y local
+### git pull
+ - Bajamos cambios del remoto:
+   - $ git pull
+ - Para actualizar nuestro repositorio local con los cambios que surgieron en el remoto:
+   - $ git fetch origin main (podriamos no colocar el main pero se traeria los cambios de todas las ramas, tambien podriamos hacerlos sin "origin main", y supondra que los cambios son todos del "origin main")
+ - Con el siguiente comando veremos con cuantos commits de distancia estamos del main origin, nos facilita ver si hay cambios para traer
+   - git branch -vv
+ - Para traernos todos los cambios del remoto y mover el puntero local al actual en el remoto usamos:
+   - git merge origin/main 
+ > [!IMPORTANT]
+ > fetch + merge = pull
+
+ - pull rebase, este nos ayuda a subir los cambios de nuestro local al remoto sin actualizar los cambios en nuestro local con los cambios del remoto.(en ptras palabras, se pone encima del remoto)
+  ![imagen de muestra]("imagen-pull.png")
+Como se muestra en la imagen, usando rebase se vuelve lineal, pero cuando no hacemos esta lo hace de manera en q podamos ver el 3-wway-merge en el historial
+
+### git push
+ > [!WARNING]
+ > Evitar el uso de git push -f (esto fuerza los cambios subidos)
+
+- Para subir etiquetas al origin usamos:
+   - $ git push orgin nombre_etiqueta
+### Publicando ramas en remoto
+Cuando creamos una rama en nuestro local esta no se sube automaticamente al remoto, sino que debemos subirlo, usamos:
+   - $ git push --set-upstream origin nombre_rama
+ - otra fomra mas corta de hacer el mismo comando es:
+   - $ git push -u origin nombre_rama
+ - Para eliminar la rama del remoto usamos:
+   - $ git push -d origin nombre_rama
+Al realizar el borrado en el remoto, esta no se eliminara en nuestro local, por lo que debemos realizar el borrado de manera manual desde otra rama con:
+   - $ git branch -d nombre_rama
+ - El siguiente comando se utiliza para limpiar las referencias a ramas remotas que ya no existen en el repositorio remoto:
+   - $ git remote prune origin

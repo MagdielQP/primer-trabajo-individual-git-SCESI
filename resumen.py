@@ -8,7 +8,7 @@ print("clase Miercoles 30 de abril de 2025")
 print("Vimos ramas, como fusionarlas, fast-forward, que es un rebase, conflictos en git")
 
 print("clase viernes 2 de mayo de 2025")
-print(")")
+print("Vimos mas a detalle lo que es un repositorio remoto, como subir ls cambios al remoto(push), como bajarse cambios del remoto (pull), que es una pull request  ")
 
 print("clase Lunes 5 de mayo de 2025")
 print("")
